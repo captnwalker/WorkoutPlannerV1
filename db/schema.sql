@@ -9,10 +9,10 @@ To run this file, we do the following in our Terminal:
 3. Run "source schema.sql"
 
 */
-DROP DATABASE IF EXISTS workout_planner_db;
+DROP DATABASE IF EXISTS workout_plannerV1_db;
 -- Create the database movie_planner_db and specified it for use.
-CREATE DATABASE workout_planner_db;
-USE workout_planner_db;
+CREATE DATABASE workout_plannerV1_db;
+USE workout_plannerV1_db;
 
 -- Create the table plans.
 CREATE TABLE exercises
