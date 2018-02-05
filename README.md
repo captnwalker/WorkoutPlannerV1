@@ -2,13 +2,13 @@
 
 ## Purpose of this project
 
->"Workout Planner" is a Full Stack exercise logger built with MySQL, Node, Express, Handlebars and a homemade ORM. You can enter the exercises you plan to do, then "check them off" to the completed list as they are completed. Be sure to checkout the MVC design pattern below. It is a "reimagining" of the classic "Eat-da-Burger" app.
+>"Workout Planner" is a Full Stack exercise logger built with MySQL, Node, Express, Handlebars and ORM. You can enter the exercises you plan to do, then "check them off" to the completed list as they are completed. Be sure to checkout the MVC design pattern below. It is a "reimagining" of the classic "Eat-da-Burger" app.
 
 ### Deployment
 
 This app has been deployed to Heroku and can be played by clicking the link below:
 
-(https://thawing-falls-28044.herokuapp.com/ "WorkoutPlanner")
+(https://salty-sierra-97855.herokuapp.com/ "WorkoutPlanner")
 
 ### Screenshots of this Project
 
