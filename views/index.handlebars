@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center" id="top-bar">
+            <img src="/assets/img/ss.png" alt="StrongSide Gym" />
+            <h1>Exercise Planner</h1>
+        </div>
+        <div class="col-xs-6 text-center" class="task">
+            <div class="row">
+                {{#each exercise_data}} {{#unless this.completed}}
+                <div class="col-xs-9 text-center">
+                    <pre>{{this.id}}. {{this.exercise_name}}
+					</pre>
+                    
+                    
+                </div>
+                <div class="col-xs-3 text-center">
+                    <form class="devour-form button-size">
+                        <input input type="hidden" class="exercise_id" type="text" value={{this.id}}>
+                        <br>
+                        <button type="submit" class="btn btn-default">Completed!</button>
+                    </form>
+                </div>
+                {{/unless}} {{/each}}
+            </div>
+        </div>
+        <div class="col-xs-6 text-center" class="task">
+            {{#each exercise_data}} {{#if this.completed}}
+            <input class="form-control" type="text" placeholder="{{this.id}} . {{this.exercise_name}}" readonly> {{/if}} {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center enter_section">
+            <form action="/exercises/create" method="POST">
+                <input type="text" class="form-control" name="exercise_name" value="" id="enter_text">
+                <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
+            </form>
+            <p>Enter an exercise you want to do Click "Submit".</p>
+        </div>
+    </div>
+</div>

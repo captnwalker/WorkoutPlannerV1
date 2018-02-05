@@ -1,29 +1,24 @@
-// Import the ORM to create functions that will interact with the database.
 var orm = require("../config/orm.js");
 
-var cat = {
-  all: function(cb) {
-    orm.all("cats", function(res) {
+var exercise = {
+  all: function (cb) {
+    orm.all("exercises", function (res) {
       cb(res);
     });
   },
-  // The variables cols and vals are arrays.
-  create: function(cols, vals, cb) {
-    orm.create("cats", cols, vals, function(res) {
-      cb(res);
-    });
+  create: function (name, cb) {
+    orm.create("exercises", [
+      "exercise_name", "completed"
+    ], [
+        name, false
+      ], cb);
   },
-  update: function(objColVals, condition, cb) {
-    orm.update("cats", objColVals, condition, function(res) {
-      cb(res);
-    });
-  },
-  delete: function(condition, cb) {
-    orm.delete("cats", condition, function(res) {
-      cb(res);
-    });
+  update: function (id, cb) {
+    var condition = "id=" + id;
+    orm.update("exercises", {
+      completed: true
+    }, condition, cb);
   }
 };
 
-// Export the database functions for the controller (catsController.js).
-module.exports = cat;
+module.exports = exercise;

@@ -1,0 +1,137 @@
+<header style="text-align:center">
+    <img src="assets/img/ss.png" width="350px"> </header>
+
+<h1>Exercise Planner</h1>
+
+<div class="container" style="text-align:center">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>List of Planned Exercises</h3>
+
+            <ul style="list-style: none">
+                {{#each exercises}}
+                <li>
+                    <p>
+                        <button data-exerciseid="{{this.id}}" class="delexercise">Remove</button>
+
+                        {{this.id}}. {{this.exercise}} {{!--
+                        <button data-exerciseid="{{this.id}}" class="delexercise">Remove</button> --}}
+                        <button data-exerciseid="{{this.id}}" class="doneexercise">Exercise Done!</button>
+                    </p>
+                </li>
+                {{/each}}
+            </ul>
+
+        </div>
+
+
+        <div class="col-md-3">
+            <h3>Add an Exercise</h3>
+            <form id="addexercise" class="button-size">
+                <textarea type="text" name="exercise"></textarea>
+                <button type="submit">Add Exercise</button>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+
+            <h3>Completed Exercises</h3>
+            <ul style="list-style: none">
+                {{#each exercises}}
+                <li>
+                    <p>
+                        {{this.id}}. {{this.exercise}} {{!--
+                        <button data-exerciseid="{{this.id}}" class="delexercise">Delete</button> --}}
+                    </p>
+                </li>
+                {{/each}}
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(".delexercise").on("click", function (event) {
+        var id = $(this).data("exerciseid");
+
+        // Send the DELETE request.
+        $.ajax("/exercises/" + id, {
+            type: "DELETE"
+        }).then(
+            function () {
+                console.log("deleted id ", id);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+            );
+    });
+
+    //Add an exercise/////////////////////////////////////////////////////////////
+    $("#addexercise").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newexercise = {
+            exercise: $("#addexercise [name=exercise]").val().trim()
+        };
+
+        // Send the POST request.
+        $.ajax("/exercises", {
+            type: "POST",
+            data: newexercise
+        }).then(
+            function () {
+                console.log("added new exercise");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+            );
+    });
+
+
+    // Mark Exercise completed (TRUE) Boolean ////////////////////////////////////////////////////
+
+    $(".doneexercise").on("click", function (event) {
+        var id = $(this).data("exerciseid");
+
+        // Send the DELETE request.
+        $.ajax("/exercises/" + completed, {
+            type: "Boolean"
+        }).then(
+            function () {
+                console.log("completed id ", id);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+            );
+    });
+
+
+    // Update an Exercise /////////////////////////////////////////////////////////////////
+    $("#updateexercise").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var id = $("[name=id]").val().trim();
+
+        var updatedexercise = {
+            exercise: $("#updateexercise [name=exercise]").val().trim()
+        };
+
+        // Send the PUT request.
+        $.ajax("/exercises/" + id, {
+            type: "PUT",
+            data: updatedexercise
+        }).then(
+            function () {
+                console.log("updated completed ", id);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+            );
+    });
+
+
+</script>
